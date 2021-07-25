@@ -29,32 +29,32 @@ There are two possible ways to submit your project. Your instructor should have 
 
 #### 2A - Database Access Functions
 
-Write the following user access functions inside `api/users/users-model.js`:
+<!-- Write the following user access functions inside `api/users/users-model.js`:
 
 - [ ] `find`
 - [ ] `findBy`
 - [ ] `findById`
-- [ ] `add`
+- [ ] `add` -->
 
 #### 2B - Middleware Functions
 
-Write the following auth middlewares inside `api/auth/auth-middleware.js`:
+<!-- Write the following auth middlewares inside `api/auth/auth-middleware.js`:
 
 - [ ] `restricted`
 - [ ] `checkUsernameFree`
 - [ ] `checkPasswordLength`
-- [ ] `checkUsernameExists`
+- [ ] `checkUsernameExists` -->
 
 #### 2C - Endpoints
 
-Authentication will be tracked using sessions and cookies. See `api/server.js` for more instructions.
+<!-- Authentication will be tracked using sessions and cookies. See `api/server.js` for more instructions.
 
 Write the following endpoints. The first one belongs inside `api/users/users-router.js` and the rest inside `api/auth/auth-router.js`:
 
 - [ ] `[GET] /api/users`
 - [ ] `[POST] /api/auth/register`
 - [ ] `[POST] /api/auth/login`
-- [ ] `[GET] /api/auth/logout`
+- [ ] `[GET] /api/auth/logout` -->
 
 #### Users Schema
 
