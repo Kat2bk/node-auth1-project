@@ -29,21 +29,21 @@ There are two possible ways to submit your project. Your instructor should have 
 
 #### 2A - Database Access Functions
 
-Write the following user access functions inside `api/users/users-model.js`:
+<!-- Write the following user access functions inside `api/users/users-model.js`:
 
 - [ ] `find`
 - [ ] `findBy`
 - [ ] `findById`
-- [ ] `add`
+- [ ] `add` -->
 
 #### 2B - Middleware Functions
 
-Write the following auth middlewares inside `api/auth/auth-middleware.js`:
+<!-- Write the following auth middlewares inside `api/auth/auth-middleware.js`:
 
 - [ ] `restricted`
 - [ ] `checkUsernameFree`
 - [ ] `checkPasswordLength`
-- [ ] `checkUsernameExists`
+- [ ] `checkUsernameExists` -->
 
 #### 2C - Endpoints
 
