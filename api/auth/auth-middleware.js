@@ -6,11 +6,14 @@
     "message": "You shall not pass!"
   }
 */
+
+const Users = require('../users/users-model');
+
 function restricted(req, res, next) {
-  if (req.session.user) {
-    next()
+  if (!req.session.user || !req.session.cookie) {
+    return res.status(401).json({message: "Error: Unauthorized"})
   } else {
-    res.status(401).json({message: "Error: Unauthorized"})
+    next()
   }
 }
 
@@ -22,11 +25,17 @@ function restricted(req, res, next) {
     "message": "Username taken"
   }
 */
-function checkUsernameFree(req, res, next) {
-  if (req.body.username === req.body.username) {
-    res.status(422).json({message: "Username taken"})
-  } else {
-    next()
+const checkUsernameFree = async (req, res, next) => {
+  try {
+    const {username} = req.body;
+    const userExist = await Users.findBy({username})
+    if (userExist) {
+      return res.status(422).json({message: "username taken"})
+    } else {
+      next()
+    }
+  } catch (error) {
+    next(error)
   }
 }
 

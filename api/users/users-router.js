@@ -27,7 +27,7 @@ const Users = require('./users-model');
   }
  */
 
-  router.get('/', async (req, res, next) => {
+  router.get('/', restricted, async (req, res, next) => {
     const users = await Users.find();
     if (users) {
       res.status(200).json(users)

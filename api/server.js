@@ -2,10 +2,10 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const usersRouter = require('./users/users-router');
-const restrictedRouter = ('./auth/auth-router');
-const bcrypt = require('bcryptjs');
+const restrictedRouter = require('./auth/auth-router');
 const session = require('express-session');
-const store = require('connect-session-knex');
+const KnexSessionStore = require('connect-session-knex');
+const KnexSession = KnexSessionStore(session);
 
 /**
   Do what needs to be done to support sessions with the `express-session` package!
@@ -37,7 +37,7 @@ server.use(
     },
     resave: false,
     saveUninitialized: false,
-    store: new KnexSessionStore({
+    store: new KnexSession({
       knex: require('../data/db-config'),
       tablename: 'sessions',
       sidfieldname: 'sid',
@@ -47,6 +47,7 @@ server.use(
   }),
 );
 
+server.use('/api/', restrictedRouter);
 server.use('/api/users', usersRouter);
 
 server.get("/", (req, res) => {

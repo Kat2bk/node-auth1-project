@@ -11,7 +11,7 @@ function find() {
   resolves to an ARRAY with all users that match the filter condition
  */
 function findBy(filter) {
-  return db('users').where(filter).orderBy('user_id');
+  return db('users').where(filter).first();
 }
 
 /**
@@ -26,7 +26,7 @@ function findById(user_id) {
  */
 async function add(user) {
   const [user_id] = await db('users').insert(user);
-  return findById(user_id)
+  return findById({user_id});
 }
 
 // Don't forget to add these to the `exports` object so they can be required in other modules
