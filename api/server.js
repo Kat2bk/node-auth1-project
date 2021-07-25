@@ -2,6 +2,8 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const usersRouter = require('./users/users-router');
+const restrictedRouter = ('./auth/auth-router');
+const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const store = require('connect-session-knex');
 
@@ -23,6 +25,27 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
+
+server.use(
+  session({
+    name: 'chocolatechip',
+    secret: 'be sure to drink your ovaltine',
+    cookie: {
+      maxAge: 1000 * 60 * 10,
+      secure: false,
+      httpOnly: true,
+    },
+    resave: false,
+    saveUninitialized: false,
+    store: new KnexSessionStore({
+      knex: require('../data/db-config'),
+      tablename: 'sessions',
+      sidfieldname: 'sid',
+      createTable: true,
+      clearInterval: 1000 * 60 * 60
+    }),
+  }),
+);
 
 server.use('/api/users', usersRouter);
 

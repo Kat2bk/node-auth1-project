@@ -28,13 +28,12 @@ const Users = require('./users-model');
  */
 
   router.get('/', async (req, res, next) => {
-    const users = await Users.find()
+    const users = await Users.find();
     if (users) {
       res.status(200).json(users)
     } else {
       next({status: 500, message: "Unable to get users"})
     }
-    
   })
 
 
