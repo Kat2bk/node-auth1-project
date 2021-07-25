@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const {restricted} = require('../auth/auth-middleware');
+const Users = require('./users-model');
 
 /**
   [GET] /api/users
@@ -25,6 +26,16 @@ const {restricted} = require('../auth/auth-middleware');
     "message": "You shall not pass!"
   }
  */
+
+  router.get('/', async (req, res, next) => {
+    const users = await Users.find()
+    if (users) {
+      res.status(200).json(users)
+    } else {
+      next({status: 500, message: "Unable to get users"})
+    }
+    
+  })
 
 
 // Don't forget to add the router to the `exports` object so it can be required in other modules
